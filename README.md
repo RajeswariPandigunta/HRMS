@@ -1,5 +1,5 @@
 ## Python Full Stack - COAPPS
-Project Details
+#### Project Details
 PROJECT TITLE : HUMAN RESOURCE MANAGEMENT SYSTEM
 
 Team Members
