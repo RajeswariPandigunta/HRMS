@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HRMS</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    
+    .form-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 50px;
+    }
+    
+    .dashboard-container {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 200px;
+      height: 100%;
+      background-color: #f5f5f5;
+    }
+    
+    #headingId {
+      text-align: center;
+    }
+    
+    label {
+      display: block;
+      margin-top: 20px;
+    }
+    
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+    
+    input[type="file"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      margin-top: 10px;
+    }
+    
+    button {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    
+    button:hover {
+      background-color: #0069d9;
+    }
+  
+    login-form {
+      width: 300px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #f5f5f5;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    
+    .login-form h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    
+    .login-form label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    
+    .login-form input[type="text"],
+    .login-form input[type="password"] {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      box-sizing: border-box;
+      margin-bottom: 10px;
+    }
+    
+    .login-form button {
+      width: 100%;
+      padding: 8px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    
+    .login-form button:hover {
+      background-color: #0069d9;
+    }
+  
+  
+  
+    .sidebar {
+      width: 300px;
+      height: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: #f5f5f5;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    
+    .sidebar a {
+      display: block;
+      color: #333;
+      text-decoration: none;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+    
+    .sidebar a:hover {
+      background-color: #ddd;
+    }
+    
+    .logo-image {
+      display: flex;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+    
+    .logo-text {
+      margin-left: 10px;
+    }
+    
+    .dashboard-logo {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+    .dashboard-logos {
+      width: 30px;
+      height: 30px;
+      object-fit: cover;
+      border-radius: 30%;
+    }
+    .circle-image {
+      display: inline-block;
+      border-radius: 50%;
+      overflow: hidden;
+      width: 30px;
+      height: 30px;
+    }
+    
+    .circle-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  
+    
+    
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 60px;
+      padding: 0 20px;
+      background-color: #f5f5f5;
+    }
+    
+    .navbar-left {
+      display: flex;
+      align-items: center;
+    }
+    
+    .profile-icon {
+      width: 40px;
+      height: 40px;
+      background-color: #4caf50;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 20px;
+      margin-right: 10px;
+    }
+    
+    .profile-name {
+      font-size: 16px;
+      font-weight: bold;
+    }
+    
+    .navbar-center {
+      position: relative;
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .search-input {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      background-color: #f1f1f1;
+    }
+    
+    .search-button {
+      position: absolute;
+      right: 0;
+      top: 0;
+      padding: 10px;
+      border: none;
+      background-color: transparent;
+    }
+    
+    .search-icon {
+      width: 24px;
+      height: 24px;
+      fill: #999;
+    }
+    
+    .navbar-right {
+      display: flex;
+      align-items: center;
+    }
+    
+    .notification-icon,
+    .settings-icon,
+    .more-icon {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+    
+    .notification-icon-svg,
+    .settings-icon-svg,
+    .more-icon-svg {
+      width: 20px;
+      height: 20px;
+      fill: #999;
+    }
+    
+    .notification-count {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: red;
+      color: white;
+      padding: 3px 7px;
+      border-radius: 10px;
+      font-size: 12px;
+    }
+  
+    //terms and conditions
+    .form-row {
+      margin-top: 1rem;
+    }
+    
+    .form-check {
+      display: flex;
+      align-items: center;
+    }
+    
+    .form-check-input {
+      margin-right: 0.5rem;
+    }
+    
+    .form-check-label {
+      font-size: 0.9rem;
+    }
+    .form-container{
+      background-image: url("data:image/jpeg;base64,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");
+      background-size: cover;
+    }
+    .heading{
+      color: #6C2EB9;
+    }
+  </style>
+
+<body>
+<div id="sectionRegistrationForm" class="form-container">
+    <h1 id="headingId" class="heading">Registration Form</h1>
+    <form id="registration-form-data">
+    <label for="firstname">First Name:</label>
+    <input type="text" id="firstname" name="firstname" required><br>
+
+  <label for="lastname">Last Name:</label>
+  <input type="text" id="lastname" name="lastname" required><br>
+
+  <label for="preferred-name">Preferred Name:</label>
+  <input type="text" id="preferred-name" name="preferred-name" required><br>
+
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email" required><br>
+
+  <label for="phone">Phone Number:</label>
+  <input type="tel" id="phone" name="phone" required><br>
+
+  <label for="password">Password:</label>
+  <input type="password" id="password" name="password" required><br>
+
+  <label for="confirm-password">Re-type Password:</label>
+  <input type="password" id="confirm-password" name="confirm-password" required><br>
+
+  <label for="address">Address:</label>
+  <input type="text" id="address" name="address" required><br>
+
+  <label for="mandal">Mandal:</label>
+  <input type="text" id="mandal" name="mandal" required><br>
+
+  <label for="district">District:</label>
+  <input type="text" id="district" name="district" required><br>
+
+  <label for="pincode">Pincode:</label>
+  <input type="text" id="pincode" name="pincode" required><br>
+
+  <label for="employee-id">Employee Id:</label>
+  <input type="text" id="employee-id" name="employee-id" required><br>
+
+  <label for="photo">Upload Photo:</label>
+  <input type="file" id="photo" name="photo" required><br>
+
+  <label for="id-proof">ID Proof:</label>
+  <input type="file" id="id-proof" name="id-proof" required><br>
+
+  <label for="resume">Resume:</label>
+  <input type="file" id="resume" name="resume" required><br>
+
+  <label for="loi">LOI:</label>
+  <input type="file" id="loi" name="loi" required><br>
+
+  <label for="offer-letter">Offer Letter:</label>
+  <input type="file" id="offer-letter" name="offer-letter" required><br>
+  <div class="form-row">
+    <div class="col">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="true" id="agreeToTerms">
+        <label class="form-check-label" for="agreeToTerms">
+          I agree to the terms and conditions
+        </label>
+      </div>
+    </div>
+  </div>
+  
+  <button >Submit</button>
+</form>
+</div>
+</body>
+</html>
